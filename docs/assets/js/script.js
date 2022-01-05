@@ -1,5 +1,12 @@
 var buttonEl = document.querySelector("#start-quiz");
-console.log(buttonEl);
+var firstAnswersEl = document.querySelector("#first-answers");
+
+buttonEl.addEventListener("click", function() {
+    var listItemEl = document.createElement("li");
+    listItemEl.className = "answer-item";
+    listItemEl.textContent = "This answer is brought to you by 4.1.8."
+    firstAnswersEl.appendChild(listItemEl);
+});
 
 // Create variables to store the quiz questions
 
