@@ -31,3 +31,12 @@
 // Use client-side storage to store high scores
 
 // Use GitHub Pages to publish the page to the web
+var body = document.body;
+var h1El = document.createElement("h1");
+h1El.textContent = "It's Quiz Time!!";
+body.appendChild(h1El);
+h1El.setAttribute("style", "margin:auto; width:50%; text-align:center;");
+
+var pEl = document.createElement("div");
+pEl.textContent = "This is a test to see if P works.";
+body.appendChild(pEl);
