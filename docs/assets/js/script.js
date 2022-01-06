@@ -2,6 +2,7 @@
 var buttonEl = document.querySelector("#start-quiz");
 var nameButtonEl = document.querySelector("#save-task");
 var firstAnswersEl = document.querySelector("#first-answers");
+
 //4.1.8 start quiz function
 function createTaskHandler() { //created function the way I prefer
     var listItemEl = document.createElement("li");
@@ -16,10 +17,19 @@ function saveName(event) {
     var taskNameInput = document.querySelector("input[name='task-name']").value;
     console.log(taskNameInput);
 
+//if player types nothing for their name I yeall at them    
+    if(!taskNameInput) {
+        alert("You need to fill in your initials!");
+        return false;
+    }
+
+    // nameButtonEl.reset(); breaks.  I want it to reset text box 4.2.8.  I need to make it a form element or find a new way.
+
     var nameScoreEl = document.createElement("li");
     nameScoreEl.className = "answer-item";
     nameScoreEl.textContent = taskNameInput;
     firstAnswersEl.appendChild(nameScoreEl);
+
 }
 
 //start quiz call
