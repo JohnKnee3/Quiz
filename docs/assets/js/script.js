@@ -1,18 +1,18 @@
+//4.1.6 helped with selectors
 var buttonEl = document.querySelector("#start-quiz");
 var firstAnswersEl = document.querySelector("#first-answers");
-
+//4.1.8 
 function createTaskHandler() { //created function the way I prefer
     var listItemEl = document.createElement("li");
     listItemEl.className = "answer-item";
     listItemEl.textContent = "This answer is brought to you by 4.1.8."
     firstAnswersEl.appendChild(listItemEl);
 };
-
 buttonEl.addEventListener("click", createTaskHandler) 
 
 // Create variables to store the quiz questions
 
-// Use mouse-click events to start the quiz
+// Use mouse-click events to start the quiz (4.1 styles it)
 
 // Write for loops to cycle through quiz questions
 
@@ -22,7 +22,7 @@ buttonEl.addEventListener("click", createTaskHandler)
 
 // Write conditional statements to determine wrong and right answers
 
-// Use client-side storage to store high scores
+// Use client-side storage to store high scores 4.2
 
 // Use GitHub Pages to publish the page to the web
 // var body = document.body;
