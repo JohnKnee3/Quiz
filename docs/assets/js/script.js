@@ -1,14 +1,33 @@
 //4.1.6 helped with selectors
 var buttonEl = document.querySelector("#start-quiz");
+var nameButtonEl = document.querySelector("#save-task");
 var firstAnswersEl = document.querySelector("#first-answers");
-//4.1.8 
+//4.1.8 start quiz function
 function createTaskHandler() { //created function the way I prefer
     var listItemEl = document.createElement("li");
     listItemEl.className = "answer-item";
     listItemEl.textContent = "This answer is brought to you by 4.1.8."
     firstAnswersEl.appendChild(listItemEl);
 };
-buttonEl.addEventListener("click", createTaskHandler) //"submit" instead of click to pull questions? Also known as onsubmit.
+
+//save name function adding to list for now
+function saveName(event) {
+    event.preventDefault();
+    var taskNameInput = document.querySelector("input[name='task-name']").value;
+    console.log(taskNameInput);
+
+    var nameScoreEl = document.createElement("li");
+    nameScoreEl.className = "answer-item";
+    nameScoreEl.textContent = taskNameInput;
+    firstAnswersEl.appendChild(nameScoreEl);
+}
+
+//start quiz call
+buttonEl.addEventListener("click", createTaskHandler); //"submit" instead of click to pull questions? Also known as onsubmit. Submit is supposed to work on enter.
+
+//save name call
+nameButtonEl.addEventListener("click", saveName);
+
 
 // Create variables to store the quiz questions
 
