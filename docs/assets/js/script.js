@@ -8,7 +8,7 @@ function createTaskHandler() { //created function the way I prefer
     listItemEl.textContent = "This answer is brought to you by 4.1.8."
     firstAnswersEl.appendChild(listItemEl);
 };
-buttonEl.addEventListener("click", createTaskHandler) 
+buttonEl.addEventListener("click", createTaskHandler) //"submit" instead of click to pull questions? Also known as onsubmit.
 
 // Create variables to store the quiz questions
 
