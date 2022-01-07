@@ -23,8 +23,6 @@ function saveName(event) {
         return false;
     }
 
-    // nameButtonEl.reset(); breaks.  I want it to reset text box 4.2.8.  I need to make it a form element or find a new way.
-
     var nameScoreEl = document.createElement("li");
     nameScoreEl.className = "answer-item";
     nameScoreEl.textContent = taskNameInput;
