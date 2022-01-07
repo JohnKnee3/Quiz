@@ -66,6 +66,7 @@ nameButtonEl.addEventListener("click", saveName);
 
 //Notes when I had no changes but still may be relevant
 //4.2.8 passing object from one func to the next
-//4.3.6 big one about passing a local scoped global var number from a function to another, changing it's name and using it several times, even in an array so everything created is assigned to this same number.
+//4.3.6 big one about passing a local scoped global var number from a function to another, changing it's name and using it several times even in an array so everything created is assigned to this same number.
+//4.3.7 big one video about clicks using event.target.matches to reference clicks of specific things to then perform a specific task.  In this case it is delete a list.
 
 
