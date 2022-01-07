@@ -2,12 +2,21 @@
 var buttonEl = document.querySelector("#start-quiz");
 var nameButtonEl = document.querySelector("#save-task");
 var firstAnswersEl = document.querySelector("#first-answers");
-
+var questionIdCounter = 0;
+// var pet = document.querySelector(".pet");
+// var petVoice = pet.getAttribute("data-voice");
+// console.log(petVoice); SCIENCE 1 DATA HTML
 //4.1.8 start quiz function
-function createTaskHandler() { //created function the way I prefer
+
+function createQuestions() { //created function the way I prefer
     var listItemEl = document.createElement("li");
     listItemEl.className = "answer-item";
+
+    listItemEl.setAttribute("data-question-id", questionIdCounter);
     listItemEl.textContent = "This answer is brought to you by 4.1.8."
+    
+    questionIdCounter++;
+    
     firstAnswersEl.appendChild(listItemEl);
 };
 
@@ -31,7 +40,7 @@ function saveName(event) {
 }
 
 //start quiz call
-buttonEl.addEventListener("click", createTaskHandler); //"submit" instead of click to pull questions? Also known as onsubmit. Submit is supposed to work on enter.
+buttonEl.addEventListener("click", createQuestions); //"submit" instead of click to pull questions? Also known as onsubmit. Submit is supposed to work on enter.
 
 //save name call
 nameButtonEl.addEventListener("click", saveName);
