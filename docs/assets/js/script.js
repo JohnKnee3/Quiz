@@ -71,4 +71,4 @@ nameButtonEl.addEventListener("click", saveName);
 //4.3.8 used query selector to target created elements.
 //4.3.9 used var.hasAttribute("attribute") to check to see if data-task-id's number is present.  Also used var.removeAttribute("attribute") to then remove the respected attribute from a var serving as a reset of sorts.
 //4.3.10 used appendChild to take an entire <li> and move it to a new <ul>.  Used event.target.value which may be useful for the answers.
-
+//4.4.4 learned how to update arrays with .push and  how to delete from an array with a for loop
