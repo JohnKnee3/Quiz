@@ -65,9 +65,10 @@ nameButtonEl.addEventListener("click", saveName);
 
 
 //Notes when I had no changes but still may be relevant
-//4.2.8 passing object from one func to the next
+//4.2.8 passing object from one func to the next then calling it in function with a ver that looks like this  objectName.value
 //4.3.6 about passing a local scoped global var number from a function to another, changing it's name and using it several times even in an array so everything created is assigned to this same number.
 //4.3.7 video about clicks using event.target.matches to reference clicks of specific things to then perform a specific task.  In this case it is delete a list.
 //4.3.8 used query selector to target created elements.
+//4.3.9 used var.hasAttribute("attribute") to check to see if data-task-id's number is present.  Also used var.removeAttribute("attribute") to then remove the respected attribute from a var serving as a reset of sorts.
 
 
