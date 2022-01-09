@@ -73,3 +73,4 @@ nameButtonEl.addEventListener("click", saveName);
 //4.3.10 used appendChild to take an entire <li> and move it to a new <ul>.  Used event.target.value which may be useful for the answers.
 //4.4.4 learned how to update arrays with .push and  how to delete from an array with a for loop
 //4.4.5 how to save  using localStorage.setItem("tasks", JSON.stringify(tasks));
+//4.4.6 showed us how to pull things from loacal storage using putting var=local.storage.getItem("nameStoredAs") into a var and then converting that var using var=JSON.parse(var) from a string into an object
