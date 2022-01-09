@@ -1,57 +1,86 @@
 //4.1.6 helped with selectors
 var buttonEl = document.querySelector("#start-quiz");
-var nameButtonEl = document.querySelector("#save-task");
-var firstAnswersEl = document.querySelector("#first-answers");
+var quizMainEl = document.querySelector("#quiz-main");
 var questionIdCounter = 0;
-// var pet = document.querySelector(".pet");
-// var petVoice = pet.getAttribute("data-voice");
-// console.log(petVoice); SCIENCE 1 DATA HTML
-//4.1.8 start quiz function
-
-function createQuestions() { //created function the way I prefer
-    var listItemEl = document.createElement("li");
-    listItemEl.className = "answer-item";
-
-    listItemEl.setAttribute("data-question-id", questionIdCounter);
-    listItemEl.textContent = "This answer is brought to you by 4.1.8."
-    
-    questionIdCounter++;
-    
-    firstAnswersEl.appendChild(listItemEl);
-};
-
-//save name function adding to list for now
-function saveName(event) {
-    event.preventDefault();
-    var taskNameInput = document.querySelector("input[name='task-name']").value;
-    console.log(taskNameInput);
-
-//if player types nothing for their name I yeall at them    
-    if(!taskNameInput) {
-        alert("You need to fill in your initials!");
-        return false;
-    }
-
-    var nameScoreEl = document.createElement("li");
-    nameScoreEl.className = "answer-item";
-    nameScoreEl.textContent = taskNameInput;
-    firstAnswersEl.appendChild(nameScoreEl);
-
-}
-
-//start quiz call
-buttonEl.addEventListener("click", createQuestions); //"submit" instead of click to pull questions? Also known as onsubmit. Submit is supposed to work on enter.
-
-//save name call
-nameButtonEl.addEventListener("click", saveName);
-
-
 
 // Create variables to store the quiz questions
+questionsList =  [
+    {
+    question: "Commonly used data types DO NOT include:",
+    answers: ["strings", "boolean", "alerts", "numbers"]
+    },
 
-// Use mouse-click events to start the quiz (4.1 styles it)
+    {
+    question: "The condition in an if/else statement is enclosed within _____.",
+    answers: ["quotes", "curley brackets", "parentheses", "square brackets"]
+    },
 
-// Write for loops to cycle through quiz questions
+    {
+    question: "Arrays in JavaScript can be used to store _____.",
+    answers: ["numbers and strings", "other arrays", "borders", "all of the above"]
+    },
+
+    {
+    question: "String values must be enclosed within _____ when being assigned to variables.",
+    answers: ["commas", "curly brackets", "quotes", "parantheses"]
+    },
+
+    {
+    question:"A very useful tool used during development and debugging for printing content to the debugger is:",
+    answers: ["JavaScript", "terminal/bash", "for loops", "console.log"]
+    }
+]
+
+// Use mouse-click events to start the quiz ---
+function startQuiz(){
+    var titleRemove = document.querySelector(
+        ".quiz-title");
+    titleRemove.remove();
+    var bodyRemove = document.querySelector(
+        ".intro-text");
+    bodyRemove.remove();
+    var btnRemove = document.querySelector(
+        ".btn");
+    btnRemove.remove();
+    
+    createQuestions();
+} 
+
+// Write for loops to cycle through quiz questions -
+
+function createQuestions() {
+    // for (var q = 0; q < questionsList[questionIdCounter].length; q++) {
+    var questionEl = document.createElement("div");
+    questionEl.textContent = questionsList[0].question;
+    questionEl.className = ".question"
+    quizMainEl.appendChild(questionEl);
+    
+    
+    for (var i = 0; i < questionsList[questionIdCounter].answers.length; i++) {
+    var answerEl = document.createElement("div");
+    answerEl.textContent = questionsList[0].answers[i];
+    answerEl.className = "answer-item"
+    questionEl.appendChild(answerEl);
+    }
+
+    questionIdCounter++
+    // }    
+};
+
+
+
+
+//start quiz call
+buttonEl.addEventListener("click", startQuiz); 
+
+
+
+
+// Create variables to store the quiz questions ---
+
+// Use mouse-click events to start the quiz ---
+
+// Write for loops to cycle through quiz questions -
 
 // Use key-press events to receive user input in the form of answers to quiz questions
 

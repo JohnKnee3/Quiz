@@ -10,7 +10,7 @@
     --tertiary: rgb(192, 246, 253);
 }
 
-.quiz-start {
+.quiz-main {
     background: var(--secondary);
     padding: 30px 25px;
     border-bottom: 5px solid var(--primary);
@@ -19,7 +19,7 @@
     justify-content: center;
 }
 
-.quiz-start p {
+.quiz-main p {
     margin: 5px 0 20px;
     font-size: 2rem;
     text-align: center;
@@ -39,6 +39,11 @@
     box-shadow: 0 3px var(--grey);
 }
 
+.btn:hover {
+    box-shadow: 0 2px var(--grey);
+    top: -2px;
+}
+
 .page-content {
     flex: 1;
     display: flex;
@@ -54,7 +59,7 @@
 }
 
 .question {
-    font-size: 1.6rem;
+    font-size: 2rem;
 }
 
 .answer-list {
