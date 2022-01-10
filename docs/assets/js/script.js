@@ -1,38 +1,49 @@
 //4.1.6 helped with selectors
+var timerEl = document.getElementById('timer');
 var buttonEl = document.querySelector("#start-quiz");
 var quizMainEl = document.querySelector("#quiz-main");
 var questionIdCounter = 0;
 
 // Create variables to store the quiz questions
-questionsList =  [
+questionsList = [
     {
-    question: "Commonly used data types DO NOT include:",
-    answers: ["strings", "boolean", "alerts", "numbers"]
+        question: "Commonly used data types DO NOT include:",
+        answers: ["strings", "boolean", "alerts", "numbers"]
+        
+        //ASSIGN TRUE TO ARRAY 2
     },
 
     {
-    question: "The condition in an if/else statement is enclosed within _____.",
-    answers: ["quotes", "curley brackets", "parentheses", "square brackets"]
+        question: "The condition in an if/else statement is enclosed within _____.",
+        answers: ["quotes", "curley brackets", "parentheses", "square brackets"]
+        
+        //ASSIGN TRUE TO ARRAY 2
     },
 
     {
-    question: "Arrays in JavaScript can be used to store _____.",
-    answers: ["numbers and strings", "other arrays", "borders", "all of the above"]
+        question: "Arrays in JavaScript can be used to store _____.",
+        answers: ["numbers and strings", "other arrays", "borders", "all of the above"]
+        
+        //ASSIGN TRUE TO ARRAY 3
     },
 
     {
-    question: "String values must be enclosed within _____ when being assigned to variables.",
-    answers: ["commas", "curly brackets", "quotes", "parantheses"]
+        question: "String values must be enclosed within _____ when being assigned to variables.",
+        answers: ["commas", "curly brackets", "quotes", "parantheses"]
+        
+        //ASSIGNT TRUE TO ARRAY 2
     },
 
     {
-    question:"A very useful tool used during development and debugging for printing content to the debugger is:",
-    answers: ["JavaScript", "terminal/bash", "for loops", "console.log"]
+        question: "A very useful tool used during development and debugging for printing content to the debugger is:",
+        answers: ["JavaScript", "terminal/bash", "for loops", "console.log"]
+        
+        //ASSIGN TRUE TO ARRAY 3
     }
 ]
 
 // Use mouse-click events to start the quiz ---
-function startQuiz(){
+function startQuiz() {
     var titleRemove = document.querySelector(
         ".quiz-title");
     titleRemove.remove();
@@ -42,36 +53,74 @@ function startQuiz(){
     var btnRemove = document.querySelector(
         ".btn");
     btnRemove.remove();
-    
+
     createQuestions();
-} 
+    timer();
+}
 
-// Write for loops to cycle through quiz questions -
-
+// Write for loops to cycle through quiz questions ---
 function createQuestions() {
-    // for (var q = 0; q < questionsList[questionIdCounter].length; q++) {
     var questionEl = document.createElement("div");
-    questionEl.textContent = questionsList[0].question;
+    questionEl.textContent = questionsList[questionIdCounter].question;
     questionEl.className = ".question"
     quizMainEl.appendChild(questionEl);
-    
-    
+
+
     for (var i = 0; i < questionsList[questionIdCounter].answers.length; i++) {
-    var answerEl = document.createElement("div");
-    answerEl.textContent = questionsList[0].answers[i];
-    answerEl.className = "answer-item"
-    questionEl.appendChild(answerEl);
+        var answerEl = document.createElement("div");
+
+        //NEED THIS TO KNOW IF THEY ARE TRUE OR FALSE
+        answerEl.textContent = questionsList[questionIdCounter].answers[i];
+        answerEl.className = "answer-item"
+        questionEl.appendChild(answerEl);
     }
 
     questionIdCounter++
-    // }    
 };
 
+// Use key-press events to receive user input in the form of answers to quiz questions---
 
+quizMainEl.addEventListener("click", function (event) {
+    var answer = event.target;
+
+    if (answer.matches(".answer-item")) {
+        
+        //NEED TO USE THIS TO LOOK FOR A TRUE
+
+        var questionRemove = answer.parentElement;
+
+        questionRemove.remove();
+
+        createQuestions();
+
+    }
+});
+
+// Create a time limit for the game using time functions---
+function timer() {
+    var timeLeft = 19;
+    var timeInterval = setInterval(function () {
+
+        if (timeLeft > 0) {
+            timerEl.textContent = "Time: " + timeLeft;
+            timeLeft--;
+        }
+        else {
+            // Once `timeLeft` gets to 0, set `timerEl` to an empty string
+            timerEl.textContent = 'Game Over';
+            // Use `clearInterval()` to stop the timer
+            clearInterval(timeInterval);
+            // Call the `endGame()` function
+            // endGame();
+        }
+    }, 1000);
+};
+
+// Write conditional statements to determine wrong and right answers
 
 
 //start quiz call
-buttonEl.addEventListener("click", startQuiz); 
+buttonEl.addEventListener("click", startQuiz);
 
 
 
@@ -80,11 +129,11 @@ buttonEl.addEventListener("click", startQuiz);
 
 // Use mouse-click events to start the quiz ---
 
-// Write for loops to cycle through quiz questions -
+// Write for loops to cycle through quiz questions ---
 
-// Use key-press events to receive user input in the form of answers to quiz questions
+// Use key-press events to receive user input in the form of answers to quiz questions---
 
-// Create a time limit for the game using time functions
+// Create a time limit for the game using time functions---
 
 // Write conditional statements to determine wrong and right answers
 
