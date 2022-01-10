@@ -1,4 +1,3 @@
-//4.1.6 helped with selectors
 var timerEl = document.getElementById('timer');
 var buttonEl = document.querySelector("#start-quiz");
 var quizMainEl = document.querySelector("#quiz-main");
@@ -8,39 +7,42 @@ var questionIdCounter = 0;
 questionsList = [
     {
         question: "Commonly used data types DO NOT include:",
-        answers: ["strings", "boolean", "alerts", "numbers"]
+        answers: ["strings", "boolean", "alerts", "numbers"],
+        //selects spot 2
+        correctIndex: 2
         
-        //ASSIGN TRUE TO ARRAY 2
+        
     },
 
     {
         question: "The condition in an if/else statement is enclosed within _____.",
-        answers: ["quotes", "curley brackets", "parentheses", "square brackets"]
-        
-        //ASSIGN TRUE TO ARRAY 2
+        answers: ["quotes", "curley brackets", "parentheses", "square brackets"],
+        //selects array spot 2
+        correctIndex: 2
     },
 
     {
         question: "Arrays in JavaScript can be used to store _____.",
-        answers: ["numbers and strings", "other arrays", "borders", "all of the above"]
-        
-        //ASSIGN TRUE TO ARRAY 3
+        answers: ["numbers and strings", "other arrays", "borders", "all of the above"],
+        correctIndex: 3
+        //selects array spot 3
     },
 
     {
         question: "String values must be enclosed within _____ when being assigned to variables.",
-        answers: ["commas", "curly brackets", "quotes", "parantheses"]
-        
-        //ASSIGNT TRUE TO ARRAY 2
+        answers: ["commas", "curly brackets", "quotes", "parantheses"],
+        //selects array spot 2
+        correctIndex: 2
     },
 
     {
         question: "A very useful tool used during development and debugging for printing content to the debugger is:",
-        answers: ["JavaScript", "terminal/bash", "for loops", "console.log"]
-        
-        //ASSIGN TRUE TO ARRAY 3
+        answers: ["JavaScript", "terminal/bash", "for loops", "console.log"],
+        //selects array spot 3
+        correctIndex: 3
     }
 ]
+
 
 // Use mouse-click events to start the quiz ---
 function startQuiz() {
@@ -68,37 +70,26 @@ function createQuestions() {
 
     for (var i = 0; i < questionsList[questionIdCounter].answers.length; i++) {
         var answerEl = document.createElement("div");
-
-        //NEED THIS TO KNOW IF THEY ARE TRUE OR FALSE
         answerEl.textContent = questionsList[questionIdCounter].answers[i];
-        answerEl.className = "answer-item"
+        answerEl.className = "answer-item";
+        //adds true "data-correct = "true" to the corrrect answer
+        if (i === questionsList[questionIdCounter].correctIndex) {
+            // answerEl.setAttribute("data-correct", true) 
+            answerEl.dataset.correct = true;
+        }
+        else {
+            answerEl.dataset.wrong = false;
+        }
         questionEl.appendChild(answerEl);
     }
+    console.log(questionEl);
 
     questionIdCounter++
 };
 
-// Use key-press events to receive user input in the form of answers to quiz questions---
-
-quizMainEl.addEventListener("click", function (event) {
-    var answer = event.target;
-
-    if (answer.matches(".answer-item")) {
-        
-        //NEED TO USE THIS TO LOOK FOR A TRUE
-
-        var questionRemove = answer.parentElement;
-
-        questionRemove.remove();
-
-        createQuestions();
-
-    }
-});
-
 // Create a time limit for the game using time functions---
 function timer() {
-    var timeLeft = 19;
+    var timeLeft = 79;
     var timeInterval = setInterval(function () {
 
         if (timeLeft > 0) {
@@ -116,8 +107,41 @@ function timer() {
     }, 1000);
 };
 
-// Write conditional statements to determine wrong and right answers
+// Use key-press events to receive user input in the form of answers to quiz questions---
+// Write conditional statements to determine wrong and right answers-
 
+quizMainEl.addEventListener("click", function (event) {
+    var answer = event.target;
+//if answers are correct
+    if (answer.matches('.answer-item[data-correct="true"')) {
+        // alert("correct answer");
+
+        var correctEl = document.createElement("div");
+        correctEl.textContent = "Correct";
+        correctEl.className = "timer";
+        var questionEl = answer.parentElement;
+        questionEl.appendChild(correctEl);
+        
+                
+        setTimeout(function(){questionEl.remove()}, 2000);
+        setTimeout(function(){createQuestions()}, 2000);
+        
+        
+        
+        // createQuestions();
+    }
+//if answer are wrong    
+    else if (answer.matches('.answer-item[data-wrong="false"')) { 
+        var correctEl = document.createElement("div");
+        correctEl.textContent = "Wrong";
+        correctEl.className = "timer";
+        var questionEl = answer.parentElement;
+        questionEl.appendChild(correctEl);
+                
+        setTimeout(function(){questionEl.remove()}, 2000);
+        setTimeout(function(){createQuestions()}, 2000);
+    }
+});
 
 //start quiz call
 buttonEl.addEventListener("click", startQuiz);
@@ -135,7 +159,7 @@ buttonEl.addEventListener("click", startQuiz);
 
 // Create a time limit for the game using time functions---
 
-// Write conditional statements to determine wrong and right answers
+// Write conditional statements to determine wrong and right answers-
 
 // Use client-side storage to store high scores 4.2
 
