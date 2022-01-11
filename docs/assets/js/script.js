@@ -124,8 +124,8 @@ quizMainEl.addEventListener("click", function (event) {
         questionEl.appendChild(correctEl);
         
                 
-        setTimeout(function(){questionEl.remove()}, 2000);
-        setTimeout(function(){createQuestions()}, 2000);
+        setTimeout(function(){questionEl.remove()}, 500);
+        setTimeout(function(){createQuestions()}, 500);
         
         
         
@@ -140,8 +140,8 @@ quizMainEl.addEventListener("click", function (event) {
         var questionEl = answer.parentElement;
         questionEl.appendChild(correctEl);
                 
-        setTimeout(function(){questionEl.remove()}, 2000);
-        setTimeout(function(){createQuestions()}, 2000);
+        setTimeout(function(){questionEl.remove()}, 500);
+        setTimeout(function(){createQuestions()}, 500);
     }
 });
 

@@ -10,13 +10,11 @@
     --tertiary: rgb(192, 246, 253);
 }
 
-header {
-
-}
+/* Header that contains just the timer */
 .timer {
     font-size: 1.3rem;
 }
-
+/* Main Div of the Quiz Start */
 .quiz-main {
     background: var(--secondary);
     padding: 30px 25px;
@@ -51,24 +49,12 @@ header {
     top: -2px;
     cursor: pointer;
 }
+/* Main Div of the Quiz Start Ends */
 
-/* .question-list-wrapper {
-    flex: 1;
-    margin: 0 20px 20px;
-} */
-
+/* Created Divs Realting to Questions Start */
 .question {
     font-size: 2rem;
 }
-
-/* .answer-list {
-    list-style: none;
-    padding: 15px;
-    height: calc(100% - 50px);
-    background: var(--secondary);
-    border-radius: 12px;
-    border: 2px solid var(--grey);
-} */
 
 .answer-item {
     color: var(--white);
@@ -76,7 +62,8 @@ header {
     border: 2px solid var(--grey);
     background: var(--primary);
     border-radius: 12px;
-    margin-bottom: 20px;
+    margin-top: 5px;
+    margin-bottom: 15px;
 }
 
 .answer-item:hover {
@@ -84,8 +71,9 @@ header {
     top: -2px;
     cursor: pointer;
 }
+/* Created Divs Realting to Questions End */
 
-
+/* Made for phones */
 @media screen and (max-width: 980px) {
 
     .quiz-title {
