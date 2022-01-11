@@ -88,8 +88,9 @@ function createQuestions() {
 };
 
 // Create a time limit for the game using time functions---
+var timeLeft = 79;
+
 function timer() {
-    var timeLeft = 79;
     var timeInterval = setInterval(function () {
 
         if (timeLeft > 0) {
@@ -115,7 +116,7 @@ quizMainEl.addEventListener("click", function (event) {
 //if answers are correct
     if (answer.matches('.answer-item[data-correct="true"')) {
         // alert("correct answer");
-
+        
         var correctEl = document.createElement("div");
         correctEl.textContent = "Correct";
         correctEl.className = "timer";
@@ -130,8 +131,9 @@ quizMainEl.addEventListener("click", function (event) {
         
         // createQuestions();
     }
-//if answer are wrong    
+//if answer is wrong    
     else if (answer.matches('.answer-item[data-wrong="false"')) { 
+        timeLeft -= 10;
         var correctEl = document.createElement("div");
         correctEl.textContent = "Wrong";
         correctEl.className = "timer";
