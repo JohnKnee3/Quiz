@@ -2,6 +2,8 @@ var timerEl = document.getElementById('timer');
 var buttonEl = document.querySelector("#start-quiz");
 var quizMainEl = document.querySelector("#quiz-main");
 var questionIdCounter = 0;
+var timeLeft = 79;
+var score = 0;
 
 // Create variables to store the quiz questions
 questionsList = [
@@ -88,7 +90,7 @@ function createQuestions() {
 };
 
 // Create a time limit for the game using time functions---
-var timeLeft = 79;
+
 
 function timer() {
     var timeInterval = setInterval(function () {
@@ -99,7 +101,8 @@ function timer() {
         }
         else {
             // Once `timeLeft` gets to 0, set `timerEl` to an empty string
-            timerEl.textContent = 'Game Over';
+            timerEl.textContent = 'You May Finish This Question';
+            questionIdCounter = 5
             // Use `clearInterval()` to stop the timer
             clearInterval(timeInterval);
             // Call the `endGame()` function
@@ -116,7 +119,7 @@ quizMainEl.addEventListener("click", function (event) {
 //if answers are correct
     if (answer.matches('.answer-item[data-correct="true"')) {
         // alert("correct answer");
-        
+        score += 10;
         var correctEl = document.createElement("div");
         correctEl.textContent = "Correct";
         correctEl.className = "timer";
@@ -125,6 +128,12 @@ quizMainEl.addEventListener("click", function (event) {
         
                 
         setTimeout(function(){questionEl.remove()}, 500);
+        if (questionIdCounter === 5) {
+            timeLeft = 0;
+            setTimeout(function(){timerEl.textContent = 'Game Over';}, 500);
+            displayScorePage();
+            return;
+        }
         setTimeout(function(){createQuestions()}, 500);
         
         
@@ -141,10 +150,19 @@ quizMainEl.addEventListener("click", function (event) {
         questionEl.appendChild(correctEl);
                 
         setTimeout(function(){questionEl.remove()}, 500);
+        if (questionIdCounter === 5) {
+            timeLeft = 0;
+            setTimeout(function(){timerEl.textContent = 'Game Over';}, 500);
+            displayScorePage();
+            return;
+        }
         setTimeout(function(){createQuestions()}, 500);
     }
 });
 
+var displayScorePage = function() {
+    console.log(score);
+};
 //start quiz call
 buttonEl.addEventListener("click", startQuiz);
 
