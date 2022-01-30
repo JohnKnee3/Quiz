@@ -12,8 +12,6 @@ questionsList = [
         answers: ["strings", "boolean", "alerts", "numbers"],
         //selects spot 2
         correctIndex: 2
-        
-        
     },
 
     {
@@ -84,7 +82,7 @@ function createQuestions() {
         }
         questionEl.appendChild(answerEl);
     }
-    console.log(questionEl);
+    // console.log(questionEl);
 
     questionIdCounter++
 };
@@ -131,7 +129,7 @@ quizMainEl.addEventListener("click", function (event) {
         if (questionIdCounter === 5) {
             timeLeft = 0;
             setTimeout(function(){timerEl.textContent = 'Game Over';}, 500);
-            displayScorePage();
+            setTimeout(function(){displayScorePage()}, 500);
             return;
         }
         setTimeout(function(){createQuestions()}, 500);
@@ -153,7 +151,7 @@ quizMainEl.addEventListener("click", function (event) {
         if (questionIdCounter === 5) {
             timeLeft = 0;
             setTimeout(function(){timerEl.textContent = 'Game Over';}, 500);
-            displayScorePage();
+            setTimeout(function(){displayScorePage()}, 500);
             return;
         }
         setTimeout(function(){createQuestions()}, 500);
@@ -162,9 +160,32 @@ quizMainEl.addEventListener("click", function (event) {
 
 var displayScorePage = function() {
     console.log(score);
+    
+    var mainBoxEl = document.createElement("div");
+    console.log(mainBoxEl);
+    
+    var showScoreEl = document.createElement("h1");
+    showScoreEl.textContent = "Your score is " + score;
+    mainBoxEl.appendChild(showScoreEl);
+    
+    var nameInputEl = document.createElement("input");
+    nameInputEl.setAttribute("placeholder", "Input Your Name");
+    mainBoxEl.appendChild(nameInputEl);
+
+    quizMainEl.appendChild(mainBoxEl);
+    
+    nameInputEl.addEventListener("submit", formSubmitHandler);
 };
+
+var formSubmitHandler = function(){
+    console.log("does this work?");
+    
+}
+
 //start quiz call
 buttonEl.addEventListener("click", startQuiz);
+
+
 
 
 
