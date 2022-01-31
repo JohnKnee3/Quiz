@@ -1,6 +1,7 @@
 var timerEl = document.getElementById('timer');
 var buttonEl = document.querySelector("#start-quiz");
 var quizMainEl = document.querySelector("#quiz-main");
+var scoreMainEl = document.querySelector("#score-main");
 var questionIdCounter = 0;
 var timeLeft = 79;
 var score = 0;
@@ -156,25 +157,45 @@ quizMainEl.addEventListener("click", function (event) {
         }
         setTimeout(function(){createQuestions()}, 500);
     }
+
+    
 });
 
 var displayScorePage = function() {
     console.log(score);
-    
-    var mainBoxEl = document.createElement("div");
-    console.log(mainBoxEl);
-    
-    var showScoreEl = document.createElement("h1");
-    showScoreEl.textContent = "Your score is " + score;
-    mainBoxEl.appendChild(showScoreEl);
-    
-    var nameInputEl = document.createElement("input");
-    nameInputEl.setAttribute("placeholder", "Input Your Name");
-    mainBoxEl.appendChild(nameInputEl);
+    quizMainEl.removeAttribute("class", "quiz-main");
+    scoreMainEl.setAttribute("class", "quiz-main");
 
-    quizMainEl.appendChild(mainBoxEl);
+    var nameFormEl = document.createElement("form");
+    nameFormEl.setAttribute("id", "name-form");
+    nameFormEl.setAttribute("class", "answer-item");
+    console.log(nameFormEl);
     
-    nameInputEl.addEventListener("submit", formSubmitHandler);
+    var showScoreEl = document.createElement("label");
+    showScoreEl.textContent = "Your score is " + score;
+    showScoreEl.setAttribute("for", "username");
+    nameFormEl.setAttribute("class", "question");
+    nameFormEl.appendChild(showScoreEl);
+    
+        
+    var nameInputEl = document.createElement("input");
+    nameInputEl.setAttribute("name", "username");
+    nameInputEl.setAttribute("id", "player-name");
+    nameInputEl.setAttribute("class", "type-me");
+    nameInputEl.setAttribute("type", "text");
+    nameInputEl.setAttribute("autofocus", "true");
+    nameInputEl.setAttribute("placeholder", "Input Your Name");
+    nameFormEl.appendChild(nameInputEl);
+    
+    var nameButtonEl = document.createElement("button");
+    nameButtonEl.setAttribute("type", "submit");
+    // nameButtonEl.setAttribute("class", "btn");
+    nameButtonEl.textContent = "Submit";
+    nameFormEl.appendChild(nameButtonEl);
+    console.log(nameButtonEl);
+
+    scoreMainEl.appendChild(nameFormEl);
+    
 };
 
 var formSubmitHandler = function(){
