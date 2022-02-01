@@ -100,7 +100,7 @@ function timer() {
         }
         else {
             // Once `timeLeft` gets to 0, set `timerEl` to an empty string
-            timerEl.textContent = 'You May Finish This Question';
+            timerEl.textContent = 'Game Over';
             questionIdCounter = 5
             // Use `clearInterval()` to stop the timer
             clearInterval(timeInterval);
@@ -113,9 +113,11 @@ function timer() {
 // Use key-press events to receive user input in the form of answers to quiz questions---
 // Write conditional statements to determine wrong and right answers-
 
+
+
 quizMainEl.addEventListener("click", function (event) {
     var answer = event.target;
-//if answers are correct
+    //if answers are correct
     if (answer.matches('.answer-item[data-correct="true"')) {
         // alert("correct answer");
         score += 10;
@@ -124,60 +126,60 @@ quizMainEl.addEventListener("click", function (event) {
         correctEl.className = "timer";
         var questionEl = answer.parentElement;
         questionEl.appendChild(correctEl);
-        
-                
-        setTimeout(function(){questionEl.remove()}, 500);
+
+
+        setTimeout(function () { questionEl.remove() }, 500);
         if (questionIdCounter === 5) {
             timeLeft = 0;
-            setTimeout(function(){timerEl.textContent = 'Game Over';}, 500);
-            setTimeout(function(){displayScorePage()}, 500);
+            setTimeout(function () { timerEl.textContent = 'Game Over'; }, 500);
+            setTimeout(function () { displayScorePage() }, 500);
             return;
         }
-        setTimeout(function(){createQuestions()}, 500);
-        
-        
-        
+        setTimeout(function () { createQuestions() }, 500);
+
+
+
         // createQuestions();
     }
-//if answer is wrong    
-    else if (answer.matches('.answer-item[data-wrong="false"')) { 
+    //if answer is wrong    
+    else if (answer.matches('.answer-item[data-wrong="false"')) {
         timeLeft -= 10;
         var correctEl = document.createElement("div");
         correctEl.textContent = "Wrong";
         correctEl.className = "timer";
         var questionEl = answer.parentElement;
         questionEl.appendChild(correctEl);
-                
-        setTimeout(function(){questionEl.remove()}, 500);
+
+        setTimeout(function () { questionEl.remove() }, 500);
         if (questionIdCounter === 5) {
             timeLeft = 0;
-            setTimeout(function(){timerEl.textContent = 'Game Over';}, 500);
-            setTimeout(function(){displayScorePage()}, 500);
+            setTimeout(function () { timerEl.textContent = 'Game Over'; }, 500);
+            setTimeout(function () { displayScorePage() }, 500);
             return;
         }
-        setTimeout(function(){createQuestions()}, 500);
+        setTimeout(function () { createQuestions() }, 500);
     }
-
-    
+    else if(answer.matches("#name-button")){
+        event.preventDefault();
+        formSubmitHandler();
+    }
 });
 
-var displayScorePage = function() {
+var displayScorePage = function () {
     console.log(score);
-    quizMainEl.removeAttribute("class", "quiz-main");
-    scoreMainEl.setAttribute("class", "quiz-main");
-
+    
     var nameFormEl = document.createElement("form");
     nameFormEl.setAttribute("id", "name-form");
     nameFormEl.setAttribute("class", "answer-item");
     console.log(nameFormEl);
-    
+
     var showScoreEl = document.createElement("label");
     showScoreEl.textContent = "Your score is " + score;
     showScoreEl.setAttribute("for", "username");
     nameFormEl.setAttribute("class", "question");
     nameFormEl.appendChild(showScoreEl);
-    
-        
+
+
     var nameInputEl = document.createElement("input");
     nameInputEl.setAttribute("name", "username");
     nameInputEl.setAttribute("id", "player-name");
@@ -186,25 +188,31 @@ var displayScorePage = function() {
     nameInputEl.setAttribute("autofocus", "true");
     nameInputEl.setAttribute("placeholder", "Input Your Name");
     nameFormEl.appendChild(nameInputEl);
-    
+
     var nameButtonEl = document.createElement("button");
     nameButtonEl.setAttribute("type", "submit");
-    // nameButtonEl.setAttribute("class", "btn");
+    nameButtonEl.setAttribute("class", "btn");
+    nameButtonEl.setAttribute("id", "name-button");
     nameButtonEl.textContent = "Submit";
     nameFormEl.appendChild(nameButtonEl);
     console.log(nameButtonEl);
 
-    scoreMainEl.appendChild(nameFormEl);
-    
+    quizMainEl.appendChild(nameFormEl);
 };
 
-var formSubmitHandler = function(){
-    console.log("does this work?");
-    
-}
+var formSubmitHandler = function () {
+    var name = document.querySelector("#player-name");
+    console.log(name);
+    var userName = name.value.trim();
+    console.log(userName);
+    // console.log("userName");
+};
+
 
 //start quiz call
 buttonEl.addEventListener("click", startQuiz);
+
+
 
 
 
