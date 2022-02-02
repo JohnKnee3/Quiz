@@ -5,6 +5,8 @@ var scoreMainEl = document.querySelector("#score-main");
 var questionIdCounter = 0;
 var timeLeft = 79;
 var score = 0;
+tasks=[];
+
 
 // Create variables to store the quiz questions
 questionsList = [
@@ -44,6 +46,19 @@ questionsList = [
     }
 ]
 
+//save quiz score
+var saveTasks = function () {
+    console.log(tasks);
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+};
+//load from local storage
+var loadTasks = function () {
+    tasks = JSON.parse(localStorage.getItem("tasks"));
+    if (!tasks) {
+        tasks = [];
+    }
+    console.log(tasks);
+};
 
 // Use mouse-click events to start the quiz ---
 function startQuiz() {
@@ -166,12 +181,12 @@ quizMainEl.addEventListener("click", function (event) {
 });
 
 var displayScorePage = function () {
-    console.log(score);
+    // console.log(score);
     
     var nameFormEl = document.createElement("form");
     nameFormEl.setAttribute("id", "name-form");
     nameFormEl.setAttribute("class", "answer-item");
-    console.log(nameFormEl);
+    // console.log(nameFormEl);
 
     var showScoreEl = document.createElement("label");
     showScoreEl.textContent = "Your score is " + score;
@@ -195,19 +210,44 @@ var displayScorePage = function () {
     nameButtonEl.setAttribute("id", "name-button");
     nameButtonEl.textContent = "Submit";
     nameFormEl.appendChild(nameButtonEl);
-    console.log(nameButtonEl);
+    // console.log(nameButtonEl);
 
     quizMainEl.appendChild(nameFormEl);
 };
 
-var formSubmitHandler = function () {
-    var name = document.querySelector("#player-name");
-    console.log(name);
-    var userName = name.value.trim();
-    console.log(userName);
-    // console.log("userName");
+var showHighScores = function(){
+    console.log("hey there");
+    quizMainEl.textContent = "";
+    var highScoresEl = document.createElement("ul");
+    highScoresEl.textContent = "High Scores";
+
+    for (var i = 0; i < tasks.length; i++) {
+        console.log(tasks[i].score);
+
+        var scoreListItemEl = document.createElement("li");
+        scoreListItemEl.textContent = "Score: " + tasks[i].score + "    Name: " + tasks[i].name;
+        highScoresEl.appendChild(scoreListItemEl);
+    }
+
+    quizMainEl.appendChild(highScoresEl);
 };
 
+var formSubmitHandler = function () {
+    var name = document.querySelector("#player-name");
+    var userName = name.value.trim();
+    console.log(userName);
+    console.log(score);
+    tasks.push({
+        name: userName, 
+        score: score
+    });
+
+    saveTasks();
+    showHighScores();
+};
+
+//call the load from local storage
+loadTasks();
 
 //start quiz call
 buttonEl.addEventListener("click", startQuiz);
